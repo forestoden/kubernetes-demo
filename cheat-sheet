@@ -1,0 +1,23 @@
+kubectl run --image nginx --restart=Never nginx
+
+kubectl apply -f demo-app.yaml
+kubectl get pods -l app=nginx
+
+... scaling and updates ... 
+
+kubectl get replicaset 
+kubectl describe deployment nginx-deployment
+
+kubectl apply -f demo-service.yaml
+kubectl get svc 
+
+curl <cluster-ip>
+kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
+
+wget -qO- nginx-service.default.svc.cluster.local
+wget -qO- nginx-service
+
+kubectl describe service nginx-service
+
+kubectl apply -f demo-ingress.yaml
+curl -L localhost/demo
